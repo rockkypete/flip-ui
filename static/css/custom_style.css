@@ -1,0 +1,36 @@
+
+#home, #about, #howitworks, #contact{
+    height:88vh;
+}
+#about, #howitworks, #contact{
+    margin-top: 50px;
+    
+}
+
+#home{
+    border-top: 2px solid #555;
+}
+
+#home h1{
+    font-weight: bold;
+    letter-spacing: 0.8rem;
+    padding-top: 80px;
+}
+
+#home p{
+    color:#000;
+    font-size: 1.4rem;
+    margin-top: 250px;
+}
+
+#about h2, #howitworks h2, #contact h2{
+    margin-bottom: 40px;
+}
+
+#contact-form{
+    width: 50%;
+}
+
+#connect-link a{
+    color: #fff;
+}

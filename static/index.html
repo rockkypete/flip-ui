@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/custom_style.css">
+    <title>Flip-UI </title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+        <a class="navbar-brand text-success" href="#">
+            <img src="" width= "30" height="30" class="d-inline-block align-top" alt="">
+            Flip-Ui
+        </a>
+
+        <form class="form-inline ml-4">
+                <select class="form-control ml-4 mr-sm-2" id="theme-options">
+                    <option value="">Choose a Theme</option>
+                    <option value="Cyborg">Cyborg</option>
+                    <option value="Sandstone">Sandstone</option>
+                    <option value="Lux">Lux</option>
+                    <option value="Darkly">Darkly</option>
+                    <option value="Minty">Minty</option>
+                </select>
+                <select class="form-control ml-4 mr-sm-2" id="source-options">
+                    <option value="">Select Source</option>
+                    <option value="from-file">From local file</option>
+                    <option value="from-api">From Api</option>
+                </select>
+                             
+            <input type="submit" value="Use Ajax" id="Ajax-btn" class="btn btn-outline-info btn-xs text-success mr-4">
+                        
+            <input type="submit" value="Use Fetch" id="Fetch-btn" class="btn btn-outline-info btn-xs text-success mr-4">
+        </form>
+
+        <a href="index.html" class="nav-item nav-link active ml-3 mr2 text-info">Home</a>
+        <a href="about.html" class="nav-item nav-link mr-2 text-info">About</a>
+        <a href="howitworks.html" class="nav-item nav-link mr-2 text-info">How it Works</a>
+        <a href="contact.html" class="nav-item nav-link text-info">Contact</a>
+    </nav>
+
+    <!--section-->
+    <div class="jumbotrone text-center  mb-2" id="home">
+        <div class="container">
+            <!--home section-->
+                <h1 class="text-success"> Welcome to <span class="text-capitalize">flip-ui</span></h1>
+                <div class="carousel">
+
+                </div>
+                <p>Apply different UI designs to your app from a list bootswatch themes</p>
+                <a href="about.html" class="btn btn-info mr-3 mb-3">Learn more</a>
+        </div>
+    </div>
+    <!--about section-->
+    <div class="container mb-2" id="about">
+        <h2 class="text-justified text-success bg-dark">About</h2>
+        <br>
+        <p class="lead text-secondary" >Flip-UI is a simple application that provides you with 
+        multiple UI designs by switching different bootswatch themes
+        Flip-UI runs on a simple nodejs server (backend), while HTML5, CSS3 
+        (custom stylesheet and bootstrap framework) and jquery, powers the frontend..</p>          
+    </div>
+
+    <!--how it works section-->
+    <div class="container mb-2" id="howitworks">
+        <h2 class="text-justified text-success bg-dark">How It Works</h2>
+        <br>
+        <div class="row">
+            <div class="col-md-6">
+                <h5 class="text-center text-info"><u>Frontend Logic</u></h5>
+                <p class="text-justified text-secondary"> The moment a user submits a theme selection, a jquery <strong>click</strong> event listener is triggered, which the makes a 
+                    <em>GET</em> request to the server either via XHttp, ajax or fetch function, depending on the submit button clicked by the user.
+                    Being asynchronous, ajax and fetch functions waits for the server's response data. Looping through the theme object name and cdn properties (server response data ), using
+                    an identifier passed as a callback parameter, if a name matches the value of the intial ui design selected, the respective theme  bootswatch cdn
+                    is then set as the <code>&lt;link src=""&gt;</code> attribute for the first Link child of the head element using jquery for all the pages.
+                </p>
+            </div>
+            <div class="col-md-6 border-left border-secondary">
+                <h5 class="text-center text-info"><u>Backend Logic</u></h5>
+                <p class="text-justified text-secondary">
+                    All request are served back to the client using node.Js fs and path modules. Once a <i>"/theme"</i> request gets to the server; the server checks within the application directory for 
+                    a <b>themes.json file</b>, that contains an object of the different themes in the app directory and sends back the data in the file as response for further client-side processing.
+                    A simple Switch conditional is used to set the appropraite content-type header for response sent back to the client.
+                </p>
+            </div>
+        </div>                
+    </div>
+
+    <!--contact section-->
+    <div class="container" id="contact">
+        <h2 class="text-justified text-success bg-dark">Contact</h2>
+        <form id="contact-form">
+            <div class="form-group">
+                <label class="text-secondary">Name:</label>
+                <input type="text" class="form-control" id="name" placeholder="Enter name">
+            </div>
+            <div class="form-group">
+                <label class="text-secondary">Email:</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter email address">
+            </div>
+            <div class="form-group">
+                <label class="text-secondary">Message:</label>
+                <textarea class="form-control" id="message" placeholder="Type Your Message Here"></textarea>
+            </div>
+            <input type="submit" class="btn btn-outline-info mb-2" value="Submit">
+        </form>
+    </div>
+        
+            
+
+    <!--footer-->
+        <footer id="main-footer">
+            <div class="row bg-dark">
+                <div class="col-md-1 text-right">
+                    <p class="text-info mt-2">Connect:</p>
+                </div>
+                <div class="col-md-6" id="connect-link">
+                    <a href="#" class="btn btn-default btn-xs" role="button">git icon</a>
+                    <a href="#" class="btn btn-default btn-xs" role="button">twitter icon</a>
+                    <a href="#" class="btn btn-default btn-xs" role="button">LinkedIn icon</a>
+                    <a href="#" class="btn btn-default btn-xs" role="button">email</a>
+                    <a href="#" class="btn btn-default btn-xs" role="button">web icon</a>
+                    
+                </div>
+                <div class="col-md-5 text-justified">
+                    <p class="text-info mt-2">&copy; 2020 Flip-UI. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+
+    <script src="./jquery-3.4.1.js"></script>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="./js/custom_script.js"></script>
+
+</body>
+</html>

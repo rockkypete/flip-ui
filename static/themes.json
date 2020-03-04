@@ -1,0 +1,25 @@
+{
+    "themes" : [
+        {
+            "name": "theme1",
+            "cdn": "cdn-link1"
+        },
+        {
+            "name": "theme2",
+            "cdn": "cdn-link2"
+        },
+        {
+            "name": "theme3",
+            "cdn": "cdn-link3"
+        },
+        {
+            "name": "theme4",
+            "cdn": "cdn-link4"
+        },
+        {
+            "name": "theme5",
+            "cdn": "cdn-link5"
+        }        
+    ]
+        
+}

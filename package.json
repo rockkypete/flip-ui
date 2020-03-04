@@ -1,0 +1,15 @@
+{
+  "name": "flip-ui",
+  "version": "1.0.0",
+  "description": "Node-Express UI REST Api Application",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "Flip-UI"
+  },
+  "author": "Peter abah\u001b[D\u001b[D\u001b[D\u001b[D\u001b[3~A\u001b[C\u001b[C\u001b[C",
+  "license": "ISC"
+}
