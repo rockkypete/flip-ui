@@ -1,24 +1,24 @@
 {
     "themes" : [
         {
-            "name": "theme1",
-            "cdn": "cdn-link1"
+            "name": "Cyborg",
+            "cdn": "https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/cerulean/bootstrap.min.css" 
         },
         {
-            "name": "theme2",
-            "cdn": "cdn-link2"
+            "name": "Sandstone",
+            "cdn": "https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/sandstone/bootstrap.min.css"
         },
         {
-            "name": "theme3",
-            "cdn": "cdn-link3"
+            "name": "Lux",
+            "cdn": "https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/lux/bootstrap.min.css"
         },
         {
-            "name": "theme4",
-            "cdn": "cdn-link4"
+            "name": "Darkly",
+            "cdn": "https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/darkly/bootstrap.min.css"
         },
         {
-            "name": "theme5",
-            "cdn": "cdn-link5"
+            "name": "Minty",
+            "cdn": "https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/minty/bootstrap.min.css"
         }        
     ]
         

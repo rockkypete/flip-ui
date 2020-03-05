@@ -1,104 +1,83 @@
 //source to get theme name
-let source = $('#source-option').val();
+let method = $('#source-options').val();
 
 //value of theme choice
 let uiDesign = $('#theme-options').val();
-    
 
-//async function (promise) to force browser delay
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+//custom object for theme request handle
+const themeRequestObj = {
+    localSource: 'localhost:3000/themes',
+    extSource: 'https://bootswatch.com/api/4.json',
+    servedData: {},
+    ajaxTheme : function (source) {
+        $.ajax({
+            method: 'GET',
+            url: `${ source }`,
+            contentType: 'application/json',
+            dataType: 'json'
+        }).done((data)=> {
+            this.servedData = data;
+        });
+    },
+    fetchTheme: function(source){
+        fetch(`${ source }`)
+        .then((res)=> res.json())
+        .then((data)=> {
+            this.servedData = data;
+        });
+    }
 }
 
-//theme change handle with ajax call
-$('#Ajax-btn').click((e)=> {
-    if(source === 'from-file'){
-        e.preventDefault();
-        //make a GET request with ajax to the server
-        $.ajax({
-            method: 'GET',
-            url: '/themes',
-            contentType: 'application/json',
-            dataType: 'json'
-        }).done((data)=> {
-            //convert the data to array
-            console.log(data);
-            $.each(data, (i, themes)=> {
-                for (let theme of themes){
-                    if(theme.name === uiDesign){
-                        $('head link:first').attr('href', `${theme.cdn}`);
-        
-                        //console.log( `you selected ${theme.name} with a cdn of ${theme.cdn}`);
-                    }    
-                }
-            })
-        });    
-    }else{
-    
-        //assign selected theme to ui variable
-        let uiDesign = $('#theme-options').val();
-        console.log(uiDesign);
-
-        //make a GET request with ajax to bootswatch theme cdn endpoint
-        $.ajax({
-            method: 'GET',
-            url: 'https://bootswatch.com/api/4.json',
-            contentType: 'application/json',
-            dataType: 'json'
-        }).done((data)=> {
-            $.each(data, (i, property)=> {
-                let themesArray = property.themes;
-                for (let theme of themesArray){
-                    if(theme.name === uiDesign){
-                        $('head link:first').attr('href', `${theme.cssCdn}`);
-                        
-                        //console.log( `you selected ${theme.name} with a cdn of ${theme.cdn}`);
-                    }    
-                }
-            })
+//using Ajax call
+$('Ajax-btn').click((e)=> {
+    //prevent form submmision since we're not persisting to db
+    e.preventDefault();
+    if(method === 'from-file'){
+        //fetch theme from local theme.json file
+        themeRequestObj.ajaxTheme(themeRequestObj.localSource);
+        $.each(themeRequestObj.servedData, (i, themes)=> {
+            for (let theme of themes){
+                if(theme.name === uiDesign){
+                    $('head link:first').attr('href', `${theme.cdn}`);
+                }    
+            }
         });
-    }    
+    }else{
+        //fetch theme from bootswatch api
+        themeRequestObj.ajaxTheme(themeRequestObj.extSource);
+        let themesArray = themeRequestObj.servedData.themes;
+        $,each(themesArray, (i, theme)=>{
+            if(theme.name === uiDesign){
+                $('head link:first').attr('href', `${theme.cdn}`);
+            }
+        });
+    }
+       
 });
 
+//using fetch call
 
-//theme change handle with fetch method
 $('#Fetch-btn').click((e)=> {
-    if(source === 'from-file'){
-        e.preventDefault();
-     
-        //make the fetch json call
-        fetch('themes.json')
-        .then((res)=> res.json())
-        .then((data)=> {
-            $.each(data, (i, themes)=>{
-                for(let theme of themes){
-                    if(theme.name === uiDesign){
-                        $('head link:first').attr('href', `${theme.cdn}`);
-                        //console.log( `you selected ${theme.name} with a cdn of ${theme.cdn}`);
-                    }
-                }
-            });
-        });   
+    //prevent form submmision since we're not persisting to db
+    e.preventDefault();
+    if (method === 'from-file'){
+        //fetch theme from local theme.json file
+        themeRequestObj.fetchTheme(themeRequestObj.localSource);
+        $.each(themeRequestObj.servedData, (i, themes)=> {
+            for (let theme of themes){
+                if(theme.name === uiDesign){
+                    $('head link:first').attr('href', `${theme.cdn}`);
+                }    
+            }
+        });
     }else{
-        //make the fetch theme from bootswatch theme cdn endpoint
-        fetch('https://bootswatch.com/api/4.json')
-        .then((res)=> res.json())
-        .then((data)=> {
-            $.each(data, (i, property)=>{
-                let themesArray = property.themes;
-                for(let theme of themesArray){
-                    if(theme.name === uiDesign){
-                        $('head link:first').attr('href', `${theme.cssCdn}`);
-                        console.log( `you selected ${theme.name} with a cdn of ${theme.cdn}`);
-                    }
-                }
-            });
+        //fetch theme from bootswatch api
+        themeRequestObj.fetchTheme(themeRequestObj.extSource);
+        let themesArray = themeRequestObj.servedData.themes;
+        $,each(themesArray, (i, theme)=>{
+            if(theme.name === uiDesign){
+                $('head link:first').attr('href', `${theme.cdn}`);
+            }
         });
     }
 });
-
-/* wait 2seconds then reload the current page on skin button click
-    sleep(2000).then(()=> {
-        location.reload();
-        alert(`${ uiDesign } theme is now active!`);     
-    });*/

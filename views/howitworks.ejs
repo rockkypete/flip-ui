@@ -1,0 +1,26 @@
+<!--how it works section-->
+<div class="container mb-2" id="howitworks">
+    <h2 class="text-justified text-success bg-dark">How It Works</h2>
+    <br>
+    <div class="row">
+        <div class="col-md-6">
+            <h5 class="text-center"><u>Frontend Logic</u></h5>
+            <p class="text-justified text-secondary"> The moment a user submits a theme selection, a jquery <strong>click</strong> event listener is triggered, which the makes a 
+                <em>GET</em> request to the server either via XHttp, ajax or fetch function, depending on the submit button clicked by the user.
+                Being asynchronous, ajax and fetch functions waits for the server's response data. Looping through the theme object name and cdn properties (server response data ), using
+                an identifier passed as a callback parameter, if a name matches the value of the intial ui design selected, the respective theme  bootswatch cdn
+                is then set as the <code>&lt;link src=""&gt;</code> attribute for the first Link child of the head element using jquery for all the pages.
+            </p>
+        </div>
+        <div class="col-md-6 border-left border-secondary">
+            <h5 class="text-center"><u>Backend Logic</u></h5>
+            <p class="text-justified text-secondary">
+                All request are served back to the client using node.Js fs and path modules. Once a <i>"/theme"</i> request gets to the server; the server checks within the application directory for 
+                a <b>themes.json file</b>, that contains an object of the different themes in the app directory and sends back the data in the file as response for further client-side processing.
+                A simple Switch conditional is used to set the appropraite content-type header for response sent back to the client.
+            </p>
+        </div>
+    </div>                
+</div>
+    
+            

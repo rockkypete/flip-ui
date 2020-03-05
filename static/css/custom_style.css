@@ -1,4 +1,6 @@
-
+body{
+    background-color: #f3f3f5;
+}
 #home, #about, #howitworks, #contact{
     height:88vh;
 }
@@ -22,9 +24,17 @@
     font-size: 1.4rem;
     margin-top: 250px;
 }
+a, #Ajax-btn, #Fetch-btn{
+    color:#fff;
+}
 
 #about h2, #howitworks h2, #contact h2{
     margin-bottom: 40px;
+}
+
+#about img{
+    width: 100px;
+    height:100px;
 }
 
 #contact-form{
@@ -33,4 +43,12 @@
 
 #connect-link a{
     color: #fff;
+}
+
+#connect-link a img{
+    width: 20px;
+    height: 20px;
+    padding:1px;
+    background: #fff;
+    border-radius: 50%;
 }
