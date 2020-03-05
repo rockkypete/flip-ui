@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../static/css/custom_style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/cerulean/bootstrap.min.css">
     <title>Flip-UI </title>
 </head>
 <body>
@@ -14,27 +14,22 @@
             <img src="" width= "30" height="30" class="d-inline-block align-top" alt="">
             Flip-Ui
         </a>
-
+    
         <form class="form-inline ml-4">
-                <select class="form-control ml-4 mr-sm-2" id="theme-options">
-                    <option value="">Choose a Theme</option>
-                    <option value="Cyborg">Cyborg</option>
-                    <option value="Sandstone">Sandstone</option>
-                    <option value="Lux">Lux</option>
-                    <option value="Darkly">Darkly</option>
-                    <option value="Minty">Minty</option>
-                </select>
-                <select class="form-control ml-4 mr-sm-2" id="source-options">
-                    <option value="">Select Source</option>
-                    <option value="from-file">From local file</option>
-                    <option value="from-api">From Api</option>
-                </select>
-                             
-            <input type="submit" value="Use Ajax" id="Ajax-btn" class="btn btn-outline-success btn-xs mr-4">
-                        
-            <input type="submit" value="Use Fetch" id="Fetch-btn" class="btn btn-outline-success btn-xs mr-4">
+            <select class="form-control ml-4 mr-sm-2" id="theme">
+                <option value="">Choose a Theme</option>
+                <option value="cdn-link1">Cyborg</option>
+                <option value="Sandstone">Sandstone</option>
+                <option value="Lux">Lux</option>
+                <option value="Darkly">Darkly</option>
+                <option value="Minty">Minty</option>
+            </select>
         </form>
-
+        <button id="Ajax-btn" class="btn btn-outline-info btn-xs text-success mr-4" role="button"> Ajax Json</button>
+        <button id="Ajax-api" class="btn btn-outline-info btn-xs text-success mr-4" role="button"> Ajax Api</button>
+        <button id="Fetch-btn" class="btn btn-outline-info btn-xs text-success mr-4" role="button"> Fetch json</button>
+        <button id="Fecth-api" class="btn btn-outline-info btn-xs text-success mr-4" role="button"> Fetch api</button>
+    
         <a href="/" class="nav-item nav-link active ml-3 mr2">Home</a>
         <a href="/about" class="nav-item nav-link mr-2">About</a>
         <a href="/howitworks" class="nav-item nav-link mr-2">How it Works</a>
@@ -42,34 +37,34 @@
     </nav>
 
     
-    <% body %>    
-            
+    <%- body %>    
 
+    
     <!--footer-->
-        <footer id="main-footer">
-            <div class="row bg-dark">
-                <div class="col-md-1 text-right">
-                    <p class="text-success mt-2">Connect:</p>
-                </div>
-                <div class="col-md-6" id="connect-link">
-                    <a href="https://github.com/rockkypete" class="btn btn-default btn-xs" role="button"><img src="./images/git-icon.png" alt="github icon"></a>
-                    <a href="https://twitter.com/rockkypete" class="btn btn-default btn-xs" role="button"><img src="./images/twitter-icon.png" alt="Twitter icon"></a>
-                    <a href="https://linkedin.com/abahp22" class="btn btn-default btn-xs" role="button"><img src="./images/linkedIn-icon.png" alt="linkedin icon"></a>
-                    <a href="https://" class="btn btn-default btn-xs" role="button"><img src="./images/gmail-icon.png" alt="gmail icon"></a>
-                    <a href="https://petesprofile.developer" class="btn btn-default btn-xs" role="button"><img src="./images/web-icon.png" alt="Website icon"></a>
-                    
-                </div>
-                <div class="col-md-5 text-justified">
-                    <p class="text-success mt-2">&copy; 2020 Flip-UI. All rights reserved.</p>
-                </div>
+    <footer id="main-footer">
+        <div class="row bg-dark">
+            <div class="col-md-1 text-right">
+                <p class="text-success mt-2">Connect:</p>
             </div>
-        </footer>
-    </div>
+            <div class="col-md-6" id="connect-link">
+                <a href="https://github.com/rockkypete" class="btn btn-default btn-xs" role="button"><img src="./images/git-icon.png" alt="github icon"></a>
+                <a href="https://twitter.com/rockkypete" class="btn btn-default btn-xs" role="button"><img src="./images/twitter-icon.png" alt="Twitter icon"></a>
+                <a href="https://linkedin.com/abahp22" class="btn btn-default btn-xs" role="button"><img src="./images/linkedIn-icon.png" alt="linkedin icon"></a>
+                <a href="https://" class="btn btn-default btn-xs" role="button"><img src="./images/gmail-icon.png" alt="gmail icon"></a>
+                <a href="https://petesprofile.developer" class="btn btn-default btn-xs" role="button"><img src="./images/web-icon.png" alt="Website icon"></a>
+                
+            </div>
+            <div class="col-md-5 text-justified">
+                <p class="text-success mt-2">&copy; 2020 Flip-UI. All rights reserved.</p>
+            </div>
+        </div>
+</footer>
 
+    
 
-    <script src="../static/jquery-3.4.1.js"></script>
-    <script src="../static/js/bootstrap.min.js"></script>
-    <script src="../static/js/custom_script.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
 
 </body>
 </html>

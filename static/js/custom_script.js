@@ -1,22 +1,17 @@
-//source to get theme name
-let method = $('#source-options').val();
-
-//value of theme choice
-let uiDesign = $('#theme-options').val();
 
 //custom object for theme request handle
 const themeRequestObj = {
-    localSource: 'localhost:3000/themes',
+    localSource: '/themes',
     extSource: 'https://bootswatch.com/api/4.json',
     servedData: {},
     ajaxTheme : function (source) {
         $.ajax({
             method: 'GET',
             url: `${ source }`,
-            contentType: 'application/json',
             dataType: 'json'
         }).done((data)=> {
             this.servedData = data;
+            console.log(this.servedData);
         });
     },
     fetchTheme: function(source){
@@ -24,60 +19,73 @@ const themeRequestObj = {
         .then((res)=> res.json())
         .then((data)=> {
             this.servedData = data;
+            console.log(this.servedData);
         });
     }
 }
 
-//using Ajax call
 $('Ajax-btn').click((e)=> {
     //prevent form submmision since we're not persisting to db
     e.preventDefault();
-    if(method === 'from-file'){
-        //fetch theme from local theme.json file
-        themeRequestObj.ajaxTheme(themeRequestObj.localSource);
-        $.each(themeRequestObj.servedData, (i, themes)=> {
-            for (let theme of themes){
-                if(theme.name === uiDesign){
-                    $('head link:first').attr('href', `${theme.cdn}`);
-                }    
-            }
-        });
-    }else{
-        //fetch theme from bootswatch api
-        themeRequestObj.ajaxTheme(themeRequestObj.extSource);
-        let themesArray = themeRequestObj.servedData.themes;
-        $,each(themesArray, (i, theme)=>{
-            if(theme.name === uiDesign){
-                $('head link:first').attr('href', `${theme.cdn}`);
-            }
-        });
-    }
-       
-});
+    //ajax theme from local theme.json file
+    themeRequestObj.ajaxTheme(themeRequestObj.localSource);
+    let themes = themeRequestObj.servedData.themes;
+    $.each(themes, (i, theme) => {
+        console.log(`you selected ${ theme.name } with a cdn of ${ theme.cdn }`);  
+    });
+})
 
-//using fetch call
+$('Ajax-api').click((e)=> {
+    //prevent form submmision since we're not persisting to db
+    e.preventDefault();
+
+    //ajax theme from bootswatch api
+    themeRequestObj.ajaxTheme(themeRequestObj.extSource);
+    let themesArray = themeRequestObj.servedData.themes;
+    $,each(themesArray, (i, theme)=>{
+        let attribute = $('head link:first').attr('href');
+        console.log(attribute);
+    });
+});
 
 $('#Fetch-btn').click((e)=> {
     //prevent form submmision since we're not persisting to db
     e.preventDefault();
-    if (method === 'from-file'){
-        //fetch theme from local theme.json file
-        themeRequestObj.fetchTheme(themeRequestObj.localSource);
-        $.each(themeRequestObj.servedData, (i, themes)=> {
-            for (let theme of themes){
-                if(theme.name === uiDesign){
-                    $('head link:first').attr('href', `${theme.cdn}`);
-                }    
-            }
-        });
-    }else{
-        //fetch theme from bootswatch api
-        themeRequestObj.fetchTheme(themeRequestObj.extSource);
-        let themesArray = themeRequestObj.servedData.themes;
-        $,each(themesArray, (i, theme)=>{
-            if(theme.name === uiDesign){
-                $('head link:first').attr('href', `${theme.cdn}`);
-            }
-        });
-    }
+    //fetch theme from local theme.json file
+    themeRequestObj.fetchTheme(themeRequestObj.localSource);
+    let themes = themeRequestObj.servedData.themes;
+    $.each(themes, (i, theme) => {
+        console.log(`you selected ${ theme.name } with a cdn of ${ theme.cdn }`);  
+    });
 });
+       
+$('#Fetch-api').click((e)=> {
+    //prevent form submmision since we're not persisting to db
+    e.preventDefault();
+
+    //fetch theme from bootswatch api
+    themeRequestObj.fetchTheme(themeRequestObj.extSource);
+    let themesArray = themeRequestObj.servedData.themes;
+    $,each(themesArray, (i, theme)=>{
+        let attribute = $('head link:first').attr('href');
+        console.log(attribute);
+    });
+});
+
+//select onchange logic
+$('select#theme').change((e)=> {
+    themeRequestObj.ajaxTheme(themeRequestObj.localSource);
+})
+
+//async function (promise) to force browser delay
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+/*
+ wait 2seconds then reload the current page on skin button click
+    sleep(2000).then(()=> {
+        location.reload();
+        alert(`${ uiDesign } theme is now active!`);     
+    });
+*/

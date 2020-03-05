@@ -1,0 +1,24 @@
+{
+  "name": "flip-ui",
+  "version": "1.0.0",
+  "description": "theme changing node app",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com/rockkypete/flip-ui"
+  },
+  "author": "Peter Abah",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.0.1",
+    "express": "^4.17.1",
+    "express-ejs-layouts": "^2.5.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}
