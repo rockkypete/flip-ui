@@ -9,6 +9,8 @@ const app = express();
 app.use(expressLayouts);
 app.set('view engine', 'ejs');
 
+app.use(express.static(path.join(__dirname, 'static')));
+
 // handle for rerouting request to express router
 app.use('/', require('./routes/index'));
 app.use('/about', require('./routes/index'));
