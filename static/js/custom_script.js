@@ -24,28 +24,23 @@ const themeRequestObj = {
     }
 }
 
-$('Ajax-btn').click((e)=> {
+$('#Ajax-btn').click((e)=> {
     //prevent form submmision since we're not persisting to db
     e.preventDefault();
     //ajax theme from local theme.json file
     themeRequestObj.ajaxTheme(themeRequestObj.localSource);
     let themes = themeRequestObj.servedData.themes;
-    $.each(themes, (i, theme) => {
-        console.log(`you selected ${ theme.name } with a cdn of ${ theme.cdn }`);  
-    });
+    $('head link:first').attr('href', `${ themes[0].cdn }`)      
 })
 
-$('Ajax-api').click((e)=> {
+$('#Ajax-api').click((e)=> {
     //prevent form submmision since we're not persisting to db
     e.preventDefault();
 
     //ajax theme from bootswatch api
-    themeRequestObj.ajaxTheme(themeRequestObj.extSource);
+    themeRequestObj.ajaxTheme('https://bootswatch.com/api/4.json');
     let themesArray = themeRequestObj.servedData.themes;
-    $,each(themesArray, (i, theme)=>{
-        let attribute = $('head link:first').attr('href');
-        console.log(attribute);
-    });
+    $('head link:first').attr('href', `${ themesArray[3].cssCdn }`);
 });
 
 $('#Fetch-btn').click((e)=> {
@@ -66,6 +61,7 @@ $('#Fetch-api').click((e)=> {
     //fetch theme from bootswatch api
     themeRequestObj.fetchTheme(themeRequestObj.extSource);
     let themesArray = themeRequestObj.servedData.themes;
+    alert(themesArray);
     $,each(themesArray, (i, theme)=>{
         let attribute = $('head link:first').attr('href');
         console.log(attribute);
