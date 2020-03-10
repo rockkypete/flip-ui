@@ -1,3 +1,36 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-dark mb-4">
+    <a class="navbar-brand text-success" href="/">
+        Flip-Ui
+    </a>
+    <!--GET request for single theme application-->
+    <form action="/themes/local" method="POST" class="form-inline ml-4">
+        <select class="form-control ml-4 mr-sm-2"  name="themeChoice" id="theme">
+            <option value="">Choose a Theme</option>
+            <option value="Cyborg">Cyborg</option>
+            <option value="Sandstone">Sandstone</option>
+            <option value="Lux">Lux</option>
+            <option value="Darkly">Darkly</option>
+            <option value="Minty">Minty</option>
+        </select>
+        <input type="submit" value="Apply Theme" class="btn btn-success text-info ml-2 mr-4">
+    </form>
+    <!--GET request with ajax and fetch methods-->
+    <a href="/themes/apiAjax" class="btn btn-outline-info btn-xs text-success mr-4" role="button">Ajax Api</a>
+    <a href="/themes/apiFetch" class="btn btn-outline-info btn-xs text-success mr-4" role="button">Fetch Api</a>
+    
+    <!--navigation links-->
+    <a href="/" class="nav-item nav-link active ml-3 mr2">Home</a>
+    <a href="/about" class="nav-item nav-link mr-2">About</a>
+    <a href="/howitworks" class="nav-item nav-link mr-2">How it Works</a>
+    <a href="/contact" class="nav-item nav-link">Contact</a>
+</nav>
+
+<% if (msg !== ''){ %>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <%= msg %>
+        <button type="button" class="close" data-dismiss="alert" aria-label="close"><span aria-hidden="true">&times;</span></button>
+    </div>
+<% } %>
 <!--about section-->
 <div class="container mb-2" id="about" style="height:88vh;">
     <h2 class="text-justified text-success bg-dark">About</h2>
@@ -8,4 +41,24 @@
     (custom stylesheet and bootstrap framework) and jquery, powers the frontend..</p>   
                 
 </div>
+
+<!--footer-->
+<footer id="main-footer">
+    <div class="row bg-dark">
+        <div class="col-md-1 text-right">
+            <p class="text-success mt-2">Connect:</p>
+        </div>
+        <div class="col-md-6" id="connect-link">
+        <a href="https://github.com/rockkypete" class="btn btn-default btn-xs" role="button"><img src="./images/git-icon.png" alt="github icon"></a>
+            <a href="https://twitter.com/rockkypete" class="btn btn-default btn-xs" role="button"><img src="./images/twitter-icon.png" alt="Twitter icon"></a>
+            <a href="https://linkedin.com/abahp22" class="btn btn-default btn-xs" role="button"><img src="./images/linkedIn-icon.png" alt="linkedin icon"></a>
+            <a href="https://" class="btn btn-default btn-xs" role="button"><img src="./images/gmail-icon.png" alt="gmail icon"></a>
+            <a href="https://petesprofile.developer" class="btn btn-default btn-xs" role="button"><img src="./images/web-icon.png" alt="Website icon"></a>
+            
+        </div>
+        <div class="col-md-5 text-justified">
+            <p class="text-success mt-2">&copy; 2020 Flip-UI. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
 

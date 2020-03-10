@@ -1,5 +1,5 @@
-{
-    "themes" : [
+module.exports = {
+    "Themes" : [
         {
             "name": "Cyborg",
             "cdn": "https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/cyborg/bootstrap.min.css" 

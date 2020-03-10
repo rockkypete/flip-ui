@@ -1,69 +1,23 @@
 const express = require('express');
 const router = express.Router();
-const fs = require('fs');
-const path = require('path');
-const themeRequestObj = require('../custom_module');
+const themeRequestObj = require('../config/control');
+const defaultThemes = require('../config/defaultUi').Themes;
 
 //theme change from form (method:GET)
-router.get('/local', (req, res)=> {
-    // path to json themes file
-    let filePath = path.join(__dirname, 'themes.json');
-        
-    //read the themes.json file
-    fs.readFile(filePath, (err, content)=>{
-        if(err){
-            if(err.code === 'ENOENT'){
-                res.writeHead(404, {contentType: 'text/html'});
-                res.render('404');
-                console.log('page not found');
-
-            }else{
-                //server error
-                res.writeHead(500, {contentType: 'text/html'});
-                res.render('500');
-                console.log(`Server error: ${ err.code }`);
-            }
-        }else{
-            //data is good. send as response
-            let themeObjList = content.themes;
-            $.each(themeObjList, (i, theme)=>{
-                if (theme.name === req.body.themeChoice){
-                    res.render('home', {Ui: `<link rel="stylesheet" href="${ theme.cdn }">`} );
-                    console.log(`You selected theme ${theme.name} with a cdn of ${theme.cdn}`);
-                }
+router.post('/local', (req, res)=> {
+    let { themeChoice } = req.body;
+    defaultThemes.forEach((theme, i)=>{
+        if (theme.name === themeChoice){
+            res.render('home', {
+                title: 'Flip-Ui', 
+                Ui: `${ theme.cdn }`,
+                msg: `Theme ${ theme.name } is now active!`
             });
         }
     })
 });
 
-//apply theme  with ajax json file
-router.get('/localAjax', (req, res) => {
-    //read the json file
-    fs.readFile(filePath, (err, content)=>{
-        if(err){
-            if(err.code === 'ENOENT'){
-                res.writeHead(404, {contentType: 'text/html'});
-                res.render('404');
-                console.log('404');
 
-            }else{
-                //server error
-                res.writeHead(500, {contentType: 'text/html'});
-                res.render('500');
-                console.log(`Server error: ${ err.code }`);
-            }
-        }else{
-            //data is good. send as response
-            let themeObjList = content.themes;
-            $.each(themeObjList, (i, theme)=>{
-                themeRequestObj.sleep(i * 2000).then(()=>{
-                    res.render('home', {Ui: `<link rel="stylesheet" href="${ theme.cdn }">`});
-                    console.log(`Ui is now ${ theme.name } with cdn of ${ theme.cdn }`);
-                })                
-            });
-        }
-    });
-});
 
 //apply theme from external api (botswatch) with ajax
 router.get('/apiAjax', (req, res) => {
@@ -71,40 +25,15 @@ router.get('/apiAjax', (req, res) => {
     themeRequestObj.ajaxTheme(themeRequestObj.extSource);
     $.each(themeRequestObj.servedData, (i, theme)=> {
         themeRequestObj.sleep(i * 2000).then(()=>{
-            res.render('home', {Ui: `<link rel="stylesheet" href="${ theme.cssCdn }">`});
-            console.log(`Ui is now ${ theme.name } with cdn of ${ theme.cdn }`);
+            res.render('home', {
+                title: 'Flip-Ui', 
+                Ui: `${ theme.cssCdn }`,
+                msg: `Theme ${ theme.name } is now active!`
+            });
         });
     });
 });
 
-//apply theme with fetch json
-router.get('/localFetch', (req, res) => {
-    //read the json file
-    fs.readFile(filePath, (err, content)=>{
-        if(err){
-            if(err.code === 'ENOENT'){
-                res.writeHead(404, {contentType: 'text/html'});
-                res.render('404');
-                console.log('404');
-
-            }else{
-                //server error
-                res.writeHead(500, {contentType: 'text/html'});
-                res.render('500');
-                console.log(`Server error: ${ err.code }`);
-            }
-        }else{
-            //data is good. send as response
-            let themeObjList = content.themes;
-            $.each(themeObjList, (i, theme)=>{
-                themeRequestObj.sleep(i * 2000).then(()=>{
-                    res.render('home', {Ui: `<link rel="stylesheet" href="${ theme.cdn }">`});
-                    console.log(`Ui is now ${ theme.name } with cdn of ${ theme.cdn }`);
-                })                
-            });
-        }
-    });
-});
 
 //apply theme from external api (botswatch) with fetch
 router.get('/apiFetch', (req, res) => {
@@ -112,8 +41,11 @@ router.get('/apiFetch', (req, res) => {
     themeRequestObj.fetchTheme(themeRequestObj.extSource);
     $.each(themeRequestObj.servedData, (i, theme)=> {
         themeRequestObj.sleep(i * 2000).then(()=>{
-            res.render('home', {Ui: `<link rel="stylesheet" href="${ theme.cssCdn }">`} );
-            console.log(`Ui is now ${ theme.name } with cdn of ${ theme.cdn }`);
+            res.render('home', {
+                title: 'Flip-Ui', 
+                Ui: `${ theme.cssCdn }`,
+                msg: `Theme ${ theme.name } is now active!`
+            });
         });
     });
 });

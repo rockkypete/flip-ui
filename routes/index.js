@@ -4,30 +4,43 @@ const router = express.Router();
 
 //rendering the views to display in the DOM
 //home page
-router.get('/', (req, res)=> {
-    res.writeHead(200, {'contentType': 'text/html'});
-    res.render('home')
+let href = 'https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/cyborg/bootstrap.min.css';
+router.get('', (req, res)=> {
+    res.render('home', {
+        title: 'Flip-Ui', 
+        Ui: href,
+        msg: ''
+    });
 });
 
 
 //about page
 router.get('/about', (req, res)=> {
-    res.writeHead(200, {'contentType': 'text/html'});
-    res.render('about', {title: '<title>Flip-Ui | About</title>'})
+    res.render('about', {
+        title: 'Flip-Ui | About', 
+        Ui: href,
+        msg: ''
+    });
 });
 
 
 //how it works page
 router.get('/howitworks', (req, res)=> {
-    res.writeHead(200, {'contentType': 'text/html'});
-    res.render('howitworks', {title: '<title>Flip-Ui | How it works</title>'})
+    res.render('howitworks', {
+        title: 'Flip-Ui | How it works', 
+        Ui: href,
+        msg: ''
+    });
 });
 
 
 //contact page
 router.get('/contact', (req, res)=> {
-    res.writeHead(200, {'contentType': 'text/html'});
-    res.render('contact', {title: '<title>Flip-Ui | Contact</title>'})
+    res.render('contact', {
+        title: 'Flip-Ui | Contact', 
+        Ui: href,
+        msg: ''
+    });
 });
 
 module.exports = router;
