@@ -2,20 +2,23 @@
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 
+
 //express server instance
 const app = express();
 
 //MIDDLEWARES
+app.use(express.static('public'));
 app.use(expressLayouts);
 app.set('view engine', 'ejs');
 
-app.use(express.static(path.join(__dirname, 'static')));
+app.use(express.urlencoded({extended: false}));
+
 
 // handle for rerouting request to express router
 app.use('/', require('./routes/index'));
-app.use('/about', require('./routes/index'));
-app.use('/howitworks', require('./routes/index'));
-app.use('/contact', require('./routes/index'));
+
+//themes endpoint
+app.use('/themes', require('./routes/themes'));
 
 
 
