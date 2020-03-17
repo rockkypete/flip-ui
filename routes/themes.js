@@ -3,6 +3,7 @@ const router = express.Router();
 const themeRequestObj = require('../config/control');
 const defaultThemes = require('../config/defaultUi').Themes;
 
+
 //theme change from form (method:GET)
 router.post('/local', (req, res)=> {
     let { themeChoice } = req.body;
@@ -23,7 +24,7 @@ router.post('/local', (req, res)=> {
 router.get('/apiAjax', (req, res) => {
     //call the ajax method from imported module object
     themeRequestObj.ajaxTheme(themeRequestObj.extSource);
-    $.each(themeRequestObj.servedData, (i, theme)=> {
+    themeRequestObj.servedData.forEach(themes, (i, theme)=> {
         themeRequestObj.sleep(i * 2000).then(()=>{
             res.render('home', {
                 title: 'Flip-Ui', 
@@ -39,7 +40,7 @@ router.get('/apiAjax', (req, res) => {
 router.get('/apiFetch', (req, res) => {
     //call the ajax method from imported module object
     themeRequestObj.fetchTheme(themeRequestObj.extSource);
-    $.each(themeRequestObj.servedData, (i, theme)=> {
+    themeRequestObj.servedData.forEach(themes, (i, theme)=> {
         themeRequestObj.sleep(i * 2000).then(()=>{
             res.render('home', {
                 title: 'Flip-Ui', 
